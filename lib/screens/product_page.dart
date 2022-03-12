@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:swipe_shop_flutter/custom_components/custom_scroll_product_card.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:swipe_shop_flutter/data_classes/product_data.dart';
+import 'package:swipe_shop_flutter/data_classes/person_data.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  List<ProductData> imageList = [];
+  List<PersonData> imageList = [];
 
 
   @override
@@ -52,7 +52,7 @@ class _ProductPageState extends State<ProductPage> {
                   crossAxisCount: 2,
                   itemCount: imageList.length,
                   itemBuilder: (context, index) => CustomScrollProductCard(
-                    productData: imageList[index],
+                    personData: imageList[index],
                   ),
                   staggeredTileBuilder: (index) => const StaggeredTile.fit(1),
                   mainAxisSpacing: 8.0,

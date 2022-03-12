@@ -7,11 +7,17 @@ import 'package:swipe_shop_flutter/providers/card_provider.dart';
 
 class CustomSwipeProductCard extends StatefulWidget {
   final String urlImage;
+  final String location;
+  final String name;
+  final String note;
   final bool isFront;
 
   const CustomSwipeProductCard({
     Key? key,
     required this.urlImage,
+    required this.name,
+    required this.location,
+    required this.note,
     required this.isFront,
   }) : super(key: key);
 
@@ -112,7 +118,7 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
           alignment: Alignment.topLeft,
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(0, 24, 0, 0),
+              padding: EdgeInsets.fromLTRB(0, 36, 0, 0),
               child: IconButton(
                 iconSize: 36,
                 icon: Icon(
@@ -121,6 +127,7 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
                 ),
                 onPressed: () {
                   // go back to scrolling
+                  Navigator.of(context).pop();
                 },
               ),
             ),
@@ -151,8 +158,7 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
   Widget chooseCard(provider, context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
-    String note =
-        "This is a public message leftis a public message leftis a public message leftis a public message leftis a public message leftis a public message left";
+
     return Scaffold(
       backgroundColor: provider.isExpanded ? Colors.white : Colors.white,
       body: Column(
@@ -167,10 +173,10 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
               padding: const EdgeInsets.all(10),
               child: Column(
                 children: [
-                  const Align(
+                  Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Javier Talavera",
+                      "${widget.name}",
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -183,7 +189,7 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "Note: $note",
+                        "Note: ${widget.note}",
                         style: TextStyle(
                           fontSize: 16,
                         ),

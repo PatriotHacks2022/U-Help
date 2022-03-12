@@ -1,16 +1,15 @@
-class ProductData {
+class PersonData {
   String id = "";
   String imageUrl = "";
   String title = "";
-  String description = "";
-  String price = "";
+  String note = "";
+  String name = "";
   String location = "";
-  ProductData({
+  PersonData({
     required this.id,
     required this.imageUrl,
-    required this.title,
-    required this.price,
-    required this.description,
+    required this.name,
+    required this.note,
     required this.location});
 
   String getProductTitle() {

@@ -55,10 +55,11 @@ class AppState extends State<App> {
           _buildOffstageNavigator(TabItem.accountPage),
           _buildOffstageNavigator(TabItem.chatPage),
         ]),
-        bottomNavigationBar: BottomNavigation(
+        bottomNavigationBar: SizedBox(height: 95,
+        child: BottomNavigation(
           currentTab: _currentTab,
           onSelectTab: _selectTab,
-        ),
+        ),)
       ),
     );
   }

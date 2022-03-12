@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:swipe_shop_flutter/data_classes/product_data.dart';
+import 'package:swipe_shop_flutter/data_classes/person_data.dart';
 import 'package:swipe_shop_flutter/screens/profile_page.dart';
 
 class CustomScrollProductCard extends StatelessWidget {
-  const CustomScrollProductCard({Key? key, required this.productData})
+  const CustomScrollProductCard({Key? key, required this.personData})
       : super(key: key);
 
-  final ProductData productData;
+  final PersonData personData;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class CustomScrollProductCard extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => SwipePage(productData: productData,),
+            builder: (context) => SwipePage(personData: personData,),
           ),
         );
       },
@@ -35,7 +35,7 @@ class CustomScrollProductCard extends StatelessWidget {
                       decoration: BoxDecoration(color: isDarkMode ? Colors.white : Colors.black),
                       alignment: Alignment.center,
                       child:
-                      Image.network(productData.imageUrl, fit: BoxFit.fill),
+                      Image.network(personData.imageUrl, fit: BoxFit.fill),
                     ),
                     const Align(
                       alignment: Alignment.centerRight,
@@ -52,7 +52,7 @@ class CustomScrollProductCard extends StatelessWidget {
                       child: Padding(
                           padding: const EdgeInsets.all(5),
                           child: CircleAvatar(
-                            backgroundImage: NetworkImage(productData.imageUrl),
+                            backgroundImage: NetworkImage(personData.imageUrl),
                             radius: 20,
                           )),
                     ),
@@ -92,7 +92,7 @@ class CustomScrollProductCard extends StatelessWidget {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Text(
-                  productData.location,
+                  personData.location,
                   style: const TextStyle(
                     color: Colors.grey,
                   ),
@@ -100,22 +100,10 @@ class CustomScrollProductCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 3),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              productData.title,
-              style: TextStyle(
-                color: isDarkMode ? Colors.white : Colors.black,
-                fontSize: 16,
-              ),
-            ),
-          ),
-          const SizedBox(height: 3),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "\$${productData.price}",
+              personData.name,
               style: TextStyle(
                 color: isDarkMode ? Colors.white : Colors.black,
                 fontSize: 16,

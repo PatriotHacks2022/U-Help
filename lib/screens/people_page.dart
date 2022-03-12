@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:swipe_shop_flutter/custom_components/custom_scroll_product_card.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:swipe_shop_flutter/data_classes/product_data.dart';
+import 'package:swipe_shop_flutter/data_classes/person_data.dart';
 
 class ScrollPage extends StatefulWidget {
   const ScrollPage({Key? key}) : super(key: key);
@@ -19,90 +19,78 @@ class _ScrollPageState extends State<ScrollPage> {
   bool isScrollingDown = false;
 
 
-  List<ProductData> imageList = [
-    ProductData(
+  List<PersonData> imageList = [
+    PersonData(
         id: 'id-001',
         imageUrl: 'https://picsum.photos/seed/image006/500/500',
-        title: "Boujee watch",
-        price: "100",
-        description: "A cool watch",
+        name: "Adam Abu",
+        note: "A cool watch",
         location: "Alexandria, VA"),
-    ProductData(
+    PersonData(
         id: 'id-002',
         imageUrl: 'https://picsum.photos/seed/image003/500/800',
-        title: "Cool thing",
-        price: "100",
-        description: "Amaazing car window!",
+        name: "100",
+        note: "Amaazing car window!",
         location: "Fairfax, VA"),
-    ProductData(
+    PersonData(
         id: 'id-003',
         imageUrl: 'https://picsum.photos/seed/image005/500/500',
-        title: "Free virtual land!",
-        price: "100",
-        description: "Something else",
+        name: "Javier Talavera",
+        note: "Something else",
         location: "France"),
-    ProductData(
+    PersonData(
         id: 'id-001',
         imageUrl: 'https://picsum.photos/seed/image002/500/500',
-        title: "Boujee watch",
-        price: "100",
-        description: "A cool watch",
+        name: "Javier Talavera",
+        note: "A cool watch",
         location: "Alexandria, VA"),
-    ProductData(
+    PersonData(
         id: 'id-002',
         imageUrl: 'https://picsum.photos/seed/image003/500/800',
-        title: "Cool thing",
-        price: "100",
-        description: "Amaazing car window!",
+        name: "Javier Talavera",
+        note: "Amaazing car window!",
         location: "Fairfax, VA"),
-    ProductData(
+    PersonData(
         id: 'id-003',
         imageUrl: 'https://picsum.photos/seed/image005/500/500',
-        title: "Free virtual land!",
-        price: "100",
-        description: "Something else",
+        name: "Javier Talavera",
+        note: "Something else",
         location: "France"),
-    ProductData(
+    PersonData(
         id: 'id-001',
         imageUrl: 'https://picsum.photos/seed/image002/500/500',
-        title: "Boujee watch",
-        price: "100",
-        description: "A cool watch",
+        name: "Javier Talavera",
+        note: "A cool watch",
         location: "Alexandria, VA"),
-    ProductData(
+    PersonData(
         id: 'id-002',
         imageUrl: 'https://picsum.photos/seed/image003/500/800',
-        title: "Cool thing",
-        price: "100",
-        description: "Amaazing car window!",
+        name: "100",
+        note: "Amaazing car window!",
         location: "Fairfax, VA"),
-    ProductData(
+    PersonData(
         id: 'id-003',
         imageUrl: 'https://i.imgur.com/9h66HBP.png',
-        title: "Free virtual land!",
-        price: "100",
-        description: "Something else",
+        name: "100",
+        note: "Something else",
         location: "France"),
-    ProductData(
+    PersonData(
         id: 'id-001',
         imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-        title: "Boujee watch",
-        price: "100",
-        description: "A cool watch",
+        name: "100",
+        note: "A cool watch",
         location: "Alexandria, VA"),
-    ProductData(
+    PersonData(
         id: 'id-002',
         imageUrl: 'https://picsum.photos/seed/image003/500/800',
-        title: "Cool thing",
-        price: "100",
-        description: "Amaazing car window!",
+        name: "100",
+        note: "Amaazing car window!",
         location: "Fairfax, VA"),
-    ProductData(
+    PersonData(
         id: 'id-003',
         imageUrl: 'https://picsum.photos/seed/image005/500/500',
-        title: "Free virtual land!",
-        price: "100",
-        description: "Something else",
+        name: "100",
+        note: "Something else",
         location: "France"),
   ];
 
@@ -214,7 +202,7 @@ class _ScrollPageState extends State<ScrollPage> {
                   crossAxisCount: 2,
                   itemCount: imageList.length,
                   itemBuilder: (context, index) => CustomScrollProductCard(
-                    productData: imageList[index],
+                    personData: imageList[index],
                   ),
                   staggeredTileBuilder: (index) => const StaggeredTile.fit(1),
                   mainAxisSpacing: 8.0,
