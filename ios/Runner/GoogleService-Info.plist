@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>710581373642-pjtu2ie917qt7a328s0n72u8q1roeqvk.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.710581373642-pjtu2ie917qt7a328s0n72u8q1roeqvk</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>710581373642-6obfi22phdsofb1arml0dd9erd6605r6.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCDHvWuJ4jHxY9_MF5x7HKgzc4uF938fcQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>710581373642</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mazellc.swipeShopFlutter</string>
+	<key>PROJECT_ID</key>
+	<string>swipeshop-47ef0</string>
+	<key>STORAGE_BUCKET</key>
+	<string>swipeshop-47ef0.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:710581373642:ios:bae68e553c8ffa9d2e0233</string>
+</dict>
+</plist>

@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "710581373642",
+    "project_id": "swipeshop-47ef0",
+    "storage_bucket": "swipeshop-47ef0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710581373642:android:8adc4a7a5316ef482e0233",
+        "android_client_info": {
+          "package_name": "com.example.swipe_shop_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710581373642-o2f3u6afg30ehndilfu1kq1h14r30307.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.swipe_shop_flutter",
+            "certificate_hash": "7c9027d6a6d1028a98a5946b9f9927e9c757a560"
+          }
+        },
+        {
+          "client_id": "710581373642-qd836po5h696aup9dhm4q3elb4jjbkfs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt_q80-4Tb5eLKR0b_iHqZ1N2lHe-8Yi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710581373642-qd836po5h696aup9dhm4q3elb4jjbkfs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "710581373642-ovin7c347lgq4f8ros3409lsuv37jg0p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.swipeshopflutter"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710581373642:android:5491ad7770f45b472e0233",
+        "android_client_info": {
+          "package_name": "com.example.swipeshopeandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710581373642-6obfi22phdsofb1arml0dd9erd6605r6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.swipeshopeandroid",
+            "certificate_hash": "7c9027d6a6d1028a98a5946b9f9927e9c757a560"
+          }
+        },
+        {
+          "client_id": "710581373642-qd836po5h696aup9dhm4q3elb4jjbkfs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt_q80-4Tb5eLKR0b_iHqZ1N2lHe-8Yi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710581373642-qd836po5h696aup9dhm4q3elb4jjbkfs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "710581373642-ovin7c347lgq4f8ros3409lsuv37jg0p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.swipeshopflutter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
