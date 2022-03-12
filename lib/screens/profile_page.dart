@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:swipe_shop_flutter/custom_components/custom_swipe_product_card.dart';
+import 'package:swipe_shop_flutter/data_classes/product_data.dart';
 import 'package:swipe_shop_flutter/providers/card_provider.dart';
 
 class SwipePage extends StatefulWidget {
-  const SwipePage({Key? key}) : super(key: key);
+
+  const SwipePage({Key? key, required this.productData}) : super(key: key);
+
+  final ProductData productData;
 
   @override
   _SwipePageState createState() => _SwipePageState();
@@ -56,7 +60,7 @@ class _SwipePageState extends State<SwipePage> {
       children: urlImages
           .map((urlImage) =>
           CustomSwipeProductCard(
-              urlImage: urlImage,
+              urlImage: widget.productData.imageUrl,
               isFront : urlImages.last == urlImage,
           ))
           .toList(),

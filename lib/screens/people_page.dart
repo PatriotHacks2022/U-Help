@@ -161,7 +161,7 @@ class _ScrollPageState extends State<ScrollPage> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "Shopping App",
+                        "People Search",
                         style: TextStyle(
                           color: isDarkMode ? Colors.white : Colors.black,
                         ),

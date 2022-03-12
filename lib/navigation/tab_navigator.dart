@@ -29,7 +29,7 @@ class TabNavigator extends StatelessWidget {
       {int materialIndex: 500}) {
     return {
       TabNavigatorRoutes.root: (context) => child,
-      TabNavigatorRoutes.detail: (context) => SwipePage() // Dont think this is necessary
+      //TabNavigatorRoutes.detail: (context) => const SwipePage() // Dont think this is necessary
     };
   }
 

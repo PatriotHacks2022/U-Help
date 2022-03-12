@@ -120,7 +120,7 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
                   color: isDarkMode ? Colors.black : Colors.white,
                 ),
                 onPressed: () {
-                  // go back to scrolling.
+                  // go back to scrolling
                 },
               ),
             ),

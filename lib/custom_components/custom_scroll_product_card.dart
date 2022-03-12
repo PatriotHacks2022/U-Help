@@ -17,7 +17,7 @@ class CustomScrollProductCard extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const SwipePage(),
+            builder: (context) => SwipePage(productData: productData,),
           ),
         );
       },
