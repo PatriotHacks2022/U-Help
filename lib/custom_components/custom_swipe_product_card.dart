@@ -43,7 +43,7 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
   Widget build(BuildContext context) {
     final provider = Provider.of<CardProvider>(context, listen: true);
     return SizedBox.expand(
-      child: widget.isFront ? buildFrontCard() : chooseCard(provider, context),
+      child: buildFrontCard(),
     );
   }
 
@@ -77,28 +77,27 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
           );
         },
       ),
-
-      onTap: (){
+      onTap: () {
         final provider = Provider.of<CardProvider>(context, listen: false);
         print("tappedd");
-        provider.expandCard();
+        //provider.expandCard();
       },
       onPanStart: (details) {
         // happens when card is first pressed
         final provider = Provider.of<CardProvider>(context, listen: false);
-        provider.startPosition(details);
+        //provider.startPosition(details);
       },
       onPanUpdate: (details) {
         // happens when card is moving
         final provider = Provider.of<CardProvider>(context, listen: false);
         if (!provider.isExpanded) {
-          provider.updatePosition(details);
+          //provider.updatePosition(details);
         }
       },
       onPanEnd: (details) {
         // happens when card is let go
         final provider = Provider.of<CardProvider>(context, listen: false);
-        provider.endPosition();
+        //provider.endPosition();
       },
     );
   }
@@ -118,7 +117,8 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -187,45 +187,85 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
   Widget chooseCard(provider, context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
-
+    String note =
+        "This is a public message leftis a public message leftis a public message leftis a public message leftis a public message leftis a public message left";
     return Scaffold(
-        backgroundColor:
-            provider.isExpanded ? Colors.white : Colors.transparent,
-        body: Column(
-          children: [
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                physics:  provider.isExpanded ? const AlwaysScrollableScrollPhysics() : const NeverScrollableScrollPhysics(),
-                children: [
-                  AnimatedContainer(
-                    color: Colors.transparent,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                    width: MediaQuery.of(context).size.width,
-                    height: provider.isExpanded
-                        ? MediaQuery.of(context).size.height / 2.2
-                        : MediaQuery.of(context).size.height / 1.22,
-                    child:
-                        provider.isExpanded ? buildExpandedCard(context) : buildCard(context),
-                  ),
-                  if (provider.isExpanded)
-                    Column(
-                      children: [
-                        Text("Test"),
-                        Text("Test"),
-                        Text("Test"),
-                        SizedBox(
-                          height: 400,
-                        ),
-                        Text("Test"),
-                      ],
+      backgroundColor: provider.isExpanded ? Colors.white : Colors.white,
+      body: Column(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height / 2.2,
+            child: buildExpandedCard(context),
+          ),
+          Expanded(child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: [
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Javier Talavera",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
-                ],
-              ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Padding(
+                  padding: EdgeInsets.all(2),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Note: $note",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(child: Container()),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red.withOpacity(0.2),
+                    shadowColor: Colors.transparent,
+                    // makes buttons round.
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    // makes button height 50 and matches width
+                    minimumSize: const Size.fromHeight(50),
+                  ),
+                  onPressed: () {},
+                  child: const Text(
+                    'Message',
+                    style: TextStyle(fontSize: 16, color: Colors.red),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red.withOpacity(0.2),
+                    shadowColor: Colors.transparent,
+                    // makes buttons round.
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    // makes button height 50 and matches width
+                    minimumSize: const Size.fromHeight(50),
+                  ),
+                  onPressed: () {},
+                  child: const Text(
+                    'Request Location',
+                    style: TextStyle(fontSize: 16, color: Colors.red),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),)
+        ],
+      ),
     );
   }
 }

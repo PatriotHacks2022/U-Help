@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swipe_shop_flutter/data_classes/product_data.dart';
-import 'package:swipe_shop_flutter/screens/swipe_page.dart';
+import 'package:swipe_shop_flutter/screens/profile_page.dart';
 
 class CustomScrollProductCard extends StatelessWidget {
   const CustomScrollProductCard({Key? key, required this.productData})

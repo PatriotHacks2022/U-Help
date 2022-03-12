@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:swipe_shop_flutter/screens/swipe_page.dart';
+import 'package:swipe_shop_flutter/screens/profile_page.dart';
 import 'package:swipe_shop_flutter/navigation/tab_item.dart';
 
 class TabNavigatorRoutes {

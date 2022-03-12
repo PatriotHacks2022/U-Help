@@ -31,7 +31,7 @@ class _SwipePageState extends State<SwipePage> {
                 children: [
                   Expanded(
                     child: AnimatedPadding(
-                      padding: isExpanded(ctx) ? const EdgeInsets.all(0) : const EdgeInsets.fromLTRB(8, 54, 8, 8),
+                      padding: const EdgeInsets.all(0),
                       duration: const Duration(milliseconds: 300),
                       curve: Curves.easeInOut,
                       child: Container(
