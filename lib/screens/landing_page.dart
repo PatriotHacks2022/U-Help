@@ -116,7 +116,7 @@ class _LandingPageState extends State<LandingPage> {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             TextSpan(
-                                text: '. SwipeShop services are subject to our '),
+                                text: '. App services are subject to our '),
                             TextSpan(
                               text: 'Privacy Policy',
                               style: TextStyle(fontWeight: FontWeight.bold),

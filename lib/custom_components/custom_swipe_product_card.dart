@@ -79,7 +79,6 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
       ),
       onTap: () {
         final provider = Provider.of<CardProvider>(context, listen: false);
-        print("tappedd");
         //provider.expandCard();
       },
       onPanStart: (details) {
@@ -102,70 +101,6 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
     );
   }
 
-  Widget buildCard(context) {
-    var brightness = MediaQuery.of(context).platformBrightness;
-    bool isDarkMode = brightness == Brightness.dark;
-
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Container(
-          child: Stack(
-            alignment: Alignment.bottomLeft,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
-                      Text(
-                        "Test",
-                        style: TextStyle(fontSize: 32, color: Colors.white),
-                      ),
-                      Text(
-                        "Test",
-                        style: TextStyle(fontSize: 32, color: Colors.white),
-                      ),
-                      Text(
-                        "Test",
-                        style: TextStyle(fontSize: 32, color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    stops: [0.1, 0.4, 0.7, 0.9],
-                    colors: [
-                      Color(0xff000000),
-                      Color(0x80000000),
-                      Color(0x40000000),
-                      Color(0x00000000),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: NetworkImage(widget.urlImage),
-              fit: BoxFit.cover,
-              alignment: const Alignment(-.3, 1),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget buildExpandedCard(context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
@@ -173,7 +108,36 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
     return ClipRRect(
       borderRadius: BorderRadius.circular(0),
       child: Container(
+        child: Stack(
+          alignment: Alignment.topLeft,
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 24, 0, 0),
+              child: IconButton(
+                iconSize: 36,
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: isDarkMode ? Colors.black : Colors.white,
+                ),
+                onPressed: () {
+                  // go back to scrolling.
+                },
+              ),
+            ),
+          ],
+        ),
         decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            stops: [0.1, 0.4, 0.7, 0.9],
+            colors: [
+              Color(0xff000000),
+              Color(0x80000000),
+              Color(0x40000000),
+              Color(0x00000000),
+            ],
+          ),
           image: DecorationImage(
             image: NetworkImage(widget.urlImage),
             fit: BoxFit.cover,
@@ -198,72 +162,74 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
             height: MediaQuery.of(context).size.height / 2.2,
             child: buildExpandedCard(context),
           ),
-          Expanded(child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              children: [
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Javier Talavera",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Padding(
-                  padding: EdgeInsets.all(2),
-                  child: Align(
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  const Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Note: $note",
+                      "Javier Talavera",
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                ),
-                Expanded(child: Container()),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.red.withOpacity(0.2),
-                    shadowColor: Colors.transparent,
-                    // makes buttons round.
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+                  const SizedBox(height: 16),
+                  Padding(
+                    padding: EdgeInsets.all(2),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Note: $note",
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
-                    // makes button height 50 and matches width
-                    minimumSize: const Size.fromHeight(50),
                   ),
-                  onPressed: () {},
-                  child: const Text(
-                    'Message',
-                    style: TextStyle(fontSize: 16, color: Colors.red),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.red.withOpacity(0.2),
-                    shadowColor: Colors.transparent,
-                    // makes buttons round.
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+                  Expanded(child: Container()),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red.withOpacity(0.2),
+                      shadowColor: Colors.transparent,
+                      // makes buttons round.
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      // makes button height 50 and matches width
+                      minimumSize: const Size.fromHeight(50),
                     ),
-                    // makes button height 50 and matches width
-                    minimumSize: const Size.fromHeight(50),
+                    onPressed: () {},
+                    child: const Text(
+                      'Message',
+                      style: TextStyle(fontSize: 16, color: Colors.red),
+                    ),
                   ),
-                  onPressed: () {},
-                  child: const Text(
-                    'Request Location',
-                    style: TextStyle(fontSize: 16, color: Colors.red),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red.withOpacity(0.2),
+                      shadowColor: Colors.transparent,
+                      // makes buttons round.
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      // makes button height 50 and matches width
+                      minimumSize: const Size.fromHeight(50),
+                    ),
+                    onPressed: () {},
+                    child: const Text(
+                      'Request Location',
+                      style: TextStyle(fontSize: 16, color: Colors.red),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),)
+          ),
         ],
       ),
     );
