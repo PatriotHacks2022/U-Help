@@ -1,7 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:swipe_shop_flutter/app.dart';
 import 'package:swipe_shop_flutter/screens/landing_page.dart';
+import 'package:swipe_shop_flutter/screens/note_page.dart';
+import 'package:swipe_shop_flutter/screens/request_page.dart';
 import 'package:swipe_shop_flutter/utils/google_sign_in/google_auth.dart';
 import 'package:swipe_shop_flutter/utils/apple_sign_in/apple_sign_in_available.dart';
 

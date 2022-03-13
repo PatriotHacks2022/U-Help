@@ -10,22 +10,49 @@ class RequestPage extends StatefulWidget {
 }
 
 class _RequestPageState extends State<RequestPage> {
+
+  List<String> people = [
+    "David",
+    "Javier",
+    "Katelyn",
+    "Arian",
+    "Adam"
+  ];
+
   @override
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-      child: Column(
-        children: const [
-          Expanded(
-            child: Align(
-              alignment: Alignment.center,
-              child: Text("Chat Page"),
-            ),
-          ),
-        ],
+    return Scaffold(
+      body: ListView.builder(
+          itemCount: people.length,
+          itemBuilder: (context, index) {
+            return SizedBox(
+              height:60,
+              child: Card(
+                  child:  Row(
+                    children: [
+                      Text(
+                          people[index],
+                          style: TextStyle(fontSize: 20),
+                      ),
+                      Expanded(
+                          child: Container(),
+                      ),
+                      IconButton(
+                          icon: Icon(Icons.close_outlined),
+                          onPressed: () {
+                            setState(() {
+                              people.removeAt(index);
+                            });
+                          },
+                      ),
+                    ],
+                  )
+              ),
+            );
+          }
       ),
     );
   }
