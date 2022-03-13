@@ -13,6 +13,7 @@ class FireAuth {
         return users.doc(uid).set(
             {
               'fullname':name,
+              'requests':{},
             }
         ).then((value) => print("User Added"))
             .catchError((error) => print("Failed to add user: $error"));

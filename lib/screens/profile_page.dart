@@ -62,6 +62,7 @@ class _SwipePageState extends State<SwipePage> {
           CustomSwipeProductCard(
               urlImage: widget.personData.imageUrl,
               name: widget.personData.name,
+              uid: widget.personData.uid,
               location: widget.personData.location,
               note: widget.personData.note,
               isFront : urlImages.last == urlImage,
