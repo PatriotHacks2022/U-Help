@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swipe_shop_flutter/app.dart';
+import 'package:swipe_shop_flutter/screens/image_page.dart';
 import 'package:swipe_shop_flutter/screens/landing_page.dart';
 import 'package:swipe_shop_flutter/screens/note_page.dart';
 import 'package:swipe_shop_flutter/screens/request_page.dart';
