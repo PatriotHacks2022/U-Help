@@ -1,3 +1,5 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 class PersonData {
   String id = "";
   String imageUrl = "";
@@ -6,7 +8,7 @@ class PersonData {
   String name = "";
   String uid = "";
   String location = "";
-  List l = [0,0];
+  LatLng l = LatLng(0, 0);
   List requests = [];
   List accepted = [];
   PersonData({
@@ -15,7 +17,9 @@ class PersonData {
     required this.uid,
     required this.name,
     required this.note,
-    required this.location});
+    required this.location,
+    required this.l,
+  });
 
   String getProductTitle() {
     return title;
@@ -27,6 +31,7 @@ class PersonData {
         uid: "",
         name: "",
         note: "",
-        location: "");
+        location: "",
+        l:LatLng(0, 0));
   }
 }

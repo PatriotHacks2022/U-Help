@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:swipe_shop_flutter/custom_components/custom_scroll_product_card.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:swipe_shop_flutter/data_classes/people_data.dart';
 import 'package:swipe_shop_flutter/data_classes/person_data.dart';
 
 class ScrollPage extends StatefulWidget {
@@ -19,92 +20,7 @@ class _ScrollPageState extends State<ScrollPage> {
   bool isScrollingDown = false;
 
 
-  List<PersonData> imageList = [
-    PersonData(
-        id: 'id-001',
-        imageUrl: 'https://picsum.photos/seed/image006/500/500',
-        uid: "JUzTASdR6DXt4pzSW5NfWjugy923",
-        name: "Adam Abu",
-        note: "A cool watch",
-        location: "Alexandria, VA"),
-    PersonData(
-        id: 'id-002',
-        imageUrl: 'https://picsum.photos/seed/image003/500/800',
-        uid: "JUzTASdR6DXt4pzSW5NfWjugy923",
-        name: "100",
-        note: "Amaazing car window!",
-        location: "Fairfax, VA"),
-    PersonData(
-        id: 'id-003',
-        imageUrl: 'https://picsum.photos/seed/image005/500/500',
-        uid: "JUzTASdR6DXt4pzSW5NfWjugy923",
-        name: "Javier Talavera",
-        note: "Something else",
-        location: "France"),
-    PersonData(
-        id: 'id-001',
-        imageUrl: 'https://picsum.photos/seed/image002/500/500',
-        uid: "JUzTASdR6DXt4pzSW5NfWjugy923",
-        name: "Javier Talavera",
-        note: "A cool watch",
-        location: "Alexandria, VA"),
-    PersonData(
-        id: 'id-002',
-        imageUrl: 'https://picsum.photos/seed/image003/500/800',
-        uid: "JUzTASdR6DXt4pzSW5NfWjugy923",
-        name: "Javier Talavera",
-        note: "Amaazing car window!",
-        location: "Fairfax, VA"),
-    PersonData(
-        id: 'id-003',
-        imageUrl: 'https://picsum.photos/seed/image005/500/500',
-        uid: "JUzTASdR6DXt4pzSW5NfWjugy923",
-        name: "Javier Talavera",
-        note: "Something else",
-        location: "France"),
-    PersonData(
-        id: 'id-001',
-        imageUrl: 'https://picsum.photos/seed/image002/500/500',
-        uid: "JUzTASdR6DXt4pzSW5NfWjugy923",
-        name: "Javier Talavera",
-        note: "A cool watch",
-        location: "Alexandria, VA"),
-    PersonData(
-        id: 'id-002',
-        imageUrl: 'https://picsum.photos/seed/image003/500/800',
-        uid: "JUzTASdR6DXt4pzSW5NfWjugy923",
-        name: "100",
-        note: "Amaazing car window!",
-        location: "Fairfax, VA"),
-    PersonData(
-        id: 'id-003',
-        uid: "JUzTASdR6DXt4pzSW5NfWjugy923",
-        imageUrl: 'https://i.imgur.com/9h66HBP.png',
-        name: "100",
-        note: "Something else",
-        location: "France"),
-    PersonData(
-        id: 'id-001',
-        imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-        uid: "JUzTASdR6DXt4pzSW5NfWjugy923",
-        name: "100",
-        note: "A cool watch",
-        location: "Alexandria, VA"),
-    PersonData(
-        id: 'id-002',
-        imageUrl: 'https://picsum.photos/seed/image003/500/800',
-        uid: "JUzTASdR6DXt4pzSW5NfWjugy923",
-        name: "100",
-        note: "Amaazing car window!",
-        location: "Fairfax, VA"),
-    PersonData(
-        id: 'id-003',
-        imageUrl: 'https://picsum.photos/seed/image005/500/500',
-        uid: "JUzTASdR6DXt4pzSW5NfWjugy923",
-        name: "100",
-        note: "Something else",
-        location: "France"),
-  ];
+  List<PersonData> imageList = PeopleData.people;
 
   @override
   void initState() {

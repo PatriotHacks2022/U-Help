@@ -3,6 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:swipe_shop_flutter/data_classes/people_data.dart';
+import 'package:swipe_shop_flutter/data_classes/person_data.dart';
+import 'package:swipe_shop_flutter/screens/accept_profile.dart';
+
+import 'accepted_profile_page.dart';
 
 class LocatorPage extends StatefulWidget {
   const LocatorPage({Key? key}) : super(key: key);
@@ -14,12 +19,27 @@ class LocatorPage extends StatefulWidget {
 class LocatorPageState extends State<LocatorPage> {
   Completer<GoogleMapController> _controller = Completer();
 
-  static final Marker _marker = Marker(
-      markerId: MarkerId('_marker'),
-      infoWindow: InfoWindow(title: "Our test"),
+  Set<Marker> _markers = {
+  };
+
+  List<PersonData> people = PeopleData.people;
+
+  Marker makeMarker(index){
+    CameraPosition _currPos = CameraPosition(
+        bearing: 192.8334901395799,
+        target: people[index].l,
+        tilt: 59.440717697143555,
+        zoom: 19.151926040649414);
+
+    return Marker(
+      markerId: MarkerId('_marker' + index.toString()),
+      infoWindow: InfoWindow(title: people[index].name),
       icon: BitmapDescriptor.defaultMarker,
-      position: LatLng(37.42796133580664, -122.085749655962),
-  );
+      position: people[index].l,
+    );
+  }
+
+
 
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
@@ -61,7 +81,8 @@ class LocatorPageState extends State<LocatorPage> {
 
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
-    return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    return await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
   }
 
   static final CameraPosition _kLake = CameraPosition(
@@ -71,29 +92,149 @@ class LocatorPageState extends State<LocatorPage> {
       zoom: 19.151926040649414);
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    for(int i = 0; i < people.length; i++){
+      _markers.add(makeMarker(i));
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      body: GoogleMap(
-        markers: {_marker},
-        mapType: MapType.hybrid,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: Text('To the lake!'),
-        icon: Icon(Icons.directions_boat),
+      appBar: AppBar(
+          toolbarHeight: 400,
+          flexibleSpace: Stack(
+            children: [
+              GoogleMap(
+                markers:Set<Marker>.of(_markers),
+                mapType: MapType.hybrid,
+                initialCameraPosition: _kGooglePlex,
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
+                myLocationButtonEnabled: false,
+              ),
+              Padding(
+                padding: EdgeInsets.all(8),
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: IconButton(
+                      onPressed: () {
+                        _goToOurLocation();
+                      },
+                      icon: Icon(
+                        Icons.location_pin,
+                        size: 45,
+                        color: Colors.blue,
+                      )),
+                ),
+              )
+            ],
+          )),
+      body: Padding(
+        padding: EdgeInsets.all(8),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 10,
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Sharing With:",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: people.length,
+                  itemBuilder: (context, index) {
+                    return SizedBox(
+                        height: 70,
+                        child: Padding(
+                          padding: EdgeInsets.all(4),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white70,
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => AcceptedProfilePage(
+                                      personData: people[index]),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.all(0),
+                              child: Row(
+                                children: [
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(5),
+                                        child: CircleAvatar(
+                                          backgroundImage: NetworkImage(
+                                              people[index].imageUrl),
+                                          radius: 20,
+                                        )),
+                                  ),
+                                  Text(
+                                    '${people[index].name}',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Container(),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      _goToTheLocation(index);
+                                    },
+                                    icon: Icon(Icons.location_pin),
+                                    iconSize: 34,
+                                    color: Colors.black,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ));
+                  }),
+            )
+          ],
+        ),
       ),
     );
   }
 
-  Future<void> _goToTheLake() async {
+  Future<void> _goToOurLocation() async {
     final GoogleMapController controller = await _controller.future;
     Position position = await _determinePosition();
     LatLng posLat = LatLng(position.latitude, position.longitude);
-    CameraPosition _currPos= CameraPosition(
+    CameraPosition _currPos = CameraPosition(
+        bearing: 192.8334901395799,
+        target: posLat,
+        tilt: 59.440717697143555,
+        zoom: 19.151926040649414);
+    controller.animateCamera(CameraUpdate.newCameraPosition(_currPos));
+  }
+
+  Future<void> _goToTheLocation(index) async {
+    final GoogleMapController controller = await _controller.future;
+    LatLng posLat = people[index].l;
+    CameraPosition _currPos = CameraPosition(
         bearing: 192.8334901395799,
         target: posLat,
         tilt: 59.440717697143555,
