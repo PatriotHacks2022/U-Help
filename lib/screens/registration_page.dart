@@ -219,7 +219,7 @@ class _RegisterationPageState extends State<RegisterationPage> {
                               ? const CircularProgressIndicator()
                               : ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.red.withOpacity(0.2),
+                              primary: Colors.blue.withOpacity(0.2),
                               shadowColor: Colors.transparent,
                               // makes buttons round.
                               shape: RoundedRectangleBorder(
@@ -268,7 +268,7 @@ class _RegisterationPageState extends State<RegisterationPage> {
                             child: const Text(
                               'Sign Up',
                               style: TextStyle(
-                                  fontSize: 16, color: Colors.red),
+                                  fontSize: 16, color: Colors.blue),
                             ),
                           ),
                         ),

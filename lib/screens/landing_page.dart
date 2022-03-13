@@ -36,11 +36,23 @@ class _LandingPageState extends State<LandingPage> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    //Image.asset('assets/logos/test_logos/Logo_test1.png'),
-                    const SizedBox(height: 150),
+                    const Text(
+                      "U-Help",
+                      style: TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(200.0),
+                      child: Image.asset('assets/logos/test_logos/UHELPLOGO.png',
+                      height: 300,),
+                    ),
+                    const SizedBox(height: 50),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.red,
+                        primary: Colors.blue,
                         // makes buttons round.
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
@@ -66,7 +78,7 @@ class _LandingPageState extends State<LandingPage> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         elevation: 0.0,
-                        primary: Colors.red.withOpacity(0.2),
+                        primary: Colors.blue.withOpacity(0.2),
                         shadowColor: Colors.transparent,
                         // makes buttons round.
                         shape: RoundedRectangleBorder(
@@ -82,7 +94,7 @@ class _LandingPageState extends State<LandingPage> {
                       ),
                       child: const Text(
                         'Sign in',
-                        style: TextStyle(fontSize: 16, color: Colors.red),
+                        style: TextStyle(fontSize: 16, color: Colors.blue),
                       ),
                     ),
                     const SizedBox(height: 16.0),

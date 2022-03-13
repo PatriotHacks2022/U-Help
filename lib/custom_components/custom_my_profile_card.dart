@@ -1,14 +1,18 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:swipe_shop_flutter/providers/card_provider.dart';
+import 'package:swipe_shop_flutter/screens/request_page.dart';
 import 'package:swipe_shop_flutter/utils/firebase_authentication/fire_auth.dart';
 
-class CustomLocationProfileCard extends StatefulWidget {
+class CustomMyProfileCard extends StatefulWidget {
   final String urlImage;
   final String location;
   final String name;
@@ -16,7 +20,7 @@ class CustomLocationProfileCard extends StatefulWidget {
   final String note;
   final bool isFront;
 
-  const CustomLocationProfileCard({
+  const CustomMyProfileCard({
     Key? key,
     required this.urlImage,
     required this.name,
@@ -27,14 +31,15 @@ class CustomLocationProfileCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<CustomLocationProfileCard> createState() {
-    return _CustomLocationProfileCardState();
+  State<CustomMyProfileCard> createState() {
+    return _CustomMyProfileCardState();
   }
 }
 
-class _CustomLocationProfileCardState extends State<CustomLocationProfileCard> {
+class _CustomMyProfileCardState extends State<CustomMyProfileCard> {
   bool isExpanded = false;
   final FirebaseAuth auth = FirebaseAuth.instance;
+  Completer<GoogleMapController> _controller = Completer();
 
   @override
   void initState() {
@@ -113,6 +118,18 @@ class _CustomLocationProfileCardState extends State<CustomLocationProfileCard> {
     );
   }
 
+  Future<void> _goToOurLocation() async {
+    final GoogleMapController controller = await _controller.future;
+    Position position = await _determinePosition();
+    LatLng posLat = LatLng(position.latitude, position.longitude);
+    CameraPosition _currPos = CameraPosition(
+        bearing: 192.8334901395799,
+        target: posLat,
+        tilt: 59.440717697143555,
+        zoom: 19.151926040649414);
+    controller.animateCamera(CameraUpdate.newCameraPosition(_currPos));
+  }
+
   Widget buildExpandedCard(context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
@@ -162,19 +179,57 @@ class _CustomLocationProfileCardState extends State<CustomLocationProfileCard> {
   }
 
   void acceptRequest() async{
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
-    var userRef = users.doc(widget.uid);
-    try{
-      //userRef.update({"requests": FieldValue.arrayUnion([auth.currentUser?.uid])});
-    }catch (e){
-      throw(e);
+
+  }
+
+  static final CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
+    zoom: 14.4746,
+  );
+
+  // Enable location services
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Location services are not enabled don't continue
+      // accessing the position and request users of the
+      // App to enable the location services.
+      return Future.error('Location services are disabled.');
     }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true. According to Android guidelines
+        // your App should show an explanatory UI now.
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    return await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
   }
 
   Widget chooseCard(provider, context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
-
+    _goToOurLocation();
     return Scaffold(
       backgroundColor: provider.isExpanded ? Colors.white : Colors.white,
       body: Column(
@@ -184,76 +239,62 @@ class _CustomLocationProfileCardState extends State<CustomLocationProfileCard> {
             height: MediaQuery.of(context).size.height / 2.2,
             child: buildExpandedCard(context),
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  Align(
+          Expanded(child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "${widget.name}",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Padding(
+                  padding: EdgeInsets.all(2),
+                  child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "${widget.name}",
+                      "Note: ${widget.note}",
                       style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  Padding(
-                    padding: EdgeInsets.all(2),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Note: ${widget.note}",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
+                ),
+                Expanded(child: Container()),
+
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blue.withOpacity(0.2),
+                    shadowColor: Colors.transparent,
+                    // makes buttons round.
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
                     ),
+                    // makes button height 50 and matches width
+                    minimumSize: const Size.fromHeight(50),
                   ),
-                  Expanded(child: Container()),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.blue.withOpacity(0.2),
-                      shadowColor: Colors.transparent,
-                      // makes buttons round.
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const RequestPage(),
                       ),
-                      // makes button height 50 and matches width
-                      minimumSize: const Size.fromHeight(50),
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      'Message',
-                      style: TextStyle(fontSize: 16, color: Colors.blue),
-                    ),
+                    );
+                  },
+                  child: const Text(
+                    'Requests',
+                    style: TextStyle(fontSize: 16, color: Colors.blue),
                   ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.blue.withOpacity(0.2),
-                      shadowColor: Colors.transparent,
-                      // makes buttons round.
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      // makes button height 50 and matches width
-                      minimumSize: const Size.fromHeight(50),
-                    ),
-                    onPressed: () {
-                      acceptRequest();
-                    },
-                    child: const Text(
-                      'Remove Location Access',
-                      style: TextStyle(fontSize: 16, color: Colors.blue),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ),
+          ),)
         ],
       ),
     );

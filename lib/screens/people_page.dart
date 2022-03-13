@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -22,15 +24,40 @@ class _ScrollPageState extends State<ScrollPage> {
 
   List<PersonData> imageList = PeopleData.people;
 
+  late Timer _timer;
+  int _start = 10;
+  bool test = false;
+
+  void startTimer() {
+    const oneSec = const Duration(milliseconds: 300);
+    _timer = new Timer.periodic(
+      oneSec,
+          (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+            test = true;
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
+    startTimer();
     _controller.addListener(_onScrollEvent);
   }
 
   @override
   void dispose() {
     _controller.removeListener(_onScrollEvent);
+    _timer.cancel();
     super.dispose();
   }
 
@@ -52,11 +79,13 @@ class _ScrollPageState extends State<ScrollPage> {
     }
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
-    bool _isScrolling = false;
+
 
     return Scaffold(
       body: SafeArea(
@@ -125,6 +154,7 @@ class _ScrollPageState extends State<ScrollPage> {
               ),
               ),
               Expanded(
+
                 child: StaggeredGridView.countBuilder(
                   controller: _controller,
                   crossAxisCount: 2,
@@ -136,8 +166,8 @@ class _ScrollPageState extends State<ScrollPage> {
                   mainAxisSpacing: 8.0,
                   crossAxisSpacing: 8.0,
                   padding:
-                      const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
-                ),
+                  const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+                )
               ),
             ],
           ),

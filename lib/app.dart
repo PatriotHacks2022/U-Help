@@ -11,10 +11,10 @@ class App extends StatefulWidget {
 }
 
 class AppState extends State<App> {
-  var _currentTab = TabItem.scrollPage;
+  var _currentTab = TabItem.productPage;
   final _navigatorKeys = {
-    TabItem.scrollPage: GlobalKey<NavigatorState>(),
     TabItem.productPage: GlobalKey<NavigatorState>(),
+    TabItem.scrollPage: GlobalKey<NavigatorState>(),
     TabItem.addProductPage: GlobalKey<NavigatorState>(),
     TabItem.accountPage: GlobalKey<NavigatorState>(),
     TabItem.chatPage: GlobalKey<NavigatorState>(),
@@ -48,9 +48,9 @@ class AppState extends State<App> {
         return isFirstRouteInCurrentTab;
       },
       child: Scaffold(
-        body: Stack(children: <Widget>[
-          _buildOffstageNavigator(TabItem.scrollPage), // change these names
+        body: Stack(children: <Widget>[ // change these names
           _buildOffstageNavigator(TabItem.productPage),
+          _buildOffstageNavigator(TabItem.scrollPage),
           _buildOffstageNavigator(TabItem.addProductPage),
           _buildOffstageNavigator(TabItem.accountPage),
           _buildOffstageNavigator(TabItem.chatPage),

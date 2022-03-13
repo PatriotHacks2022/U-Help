@@ -5,7 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:swipe_shop_flutter/chat_test/screens/chat_page.dart';
+import 'package:swipe_shop_flutter/chat_test/widgets/recents_chats.dart';
 import 'package:swipe_shop_flutter/providers/card_provider.dart';
+import 'package:swipe_shop_flutter/screens/chat_page.dart';
 import 'package:swipe_shop_flutter/utils/firebase_authentication/fire_auth.dart';
 
 class CustomSwipeProductCard extends StatefulWidget {
@@ -215,7 +218,7 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
                   Expanded(child: Container()),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.red.withOpacity(0.2),
+                      primary: Colors.blue.withOpacity(0.2),
                       shadowColor: Colors.transparent,
                       // makes buttons round.
                       shape: RoundedRectangleBorder(
@@ -224,16 +227,22 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
                       // makes button height 50 and matches width
                       minimumSize: const Size.fromHeight(50),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const RecentChats(),
+                        ),
+                      );
+                    },
                     child: const Text(
                       'Message',
-                      style: TextStyle(fontSize: 16, color: Colors.red),
+                      style: TextStyle(fontSize: 16, color: Colors.blue),
                     ),
                   ),
                   const SizedBox(height: 16),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.red.withOpacity(0.2),
+                      primary: Colors.blue.withOpacity(0.2),
                       shadowColor: Colors.transparent,
                       // makes buttons round.
                       shape: RoundedRectangleBorder(
@@ -247,7 +256,7 @@ class _CustomSwipeProductCardState extends State<CustomSwipeProductCard> {
                     },
                     child: const Text(
                       'Request Location',
-                      style: TextStyle(fontSize: 16, color: Colors.red),
+                      style: TextStyle(fontSize: 16, color: Colors.blue),
                     ),
                   ),
                 ],

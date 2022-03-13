@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -24,6 +25,8 @@ class LocatorPageState extends State<LocatorPage> {
 
   List<PersonData> people = PeopleData.people;
 
+  var rand =  Random(10000);
+
   Marker makeMarker(index){
     CameraPosition _currPos = CameraPosition(
         bearing: 192.8334901395799,
@@ -36,6 +39,21 @@ class LocatorPageState extends State<LocatorPage> {
       infoWindow: InfoWindow(title: people[index].name),
       icon: BitmapDescriptor.defaultMarker,
       position: people[index].l,
+    );
+  }
+
+  Marker makeMarkerTapped(lt, i, msg){
+    CameraPosition _currPos = CameraPosition(
+        bearing: 192.8334901395799,
+        target: lt,
+        tilt: 59.440717697143555,
+        zoom: 19.151926040649414);
+
+    return Marker(
+      markerId: MarkerId('_marker' + i.toString()),
+      infoWindow: InfoWindow(title: msg),
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
+      position: lt,
     );
   }
 
@@ -102,7 +120,6 @@ class LocatorPageState extends State<LocatorPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
           toolbarHeight: 400,
@@ -116,6 +133,13 @@ class LocatorPageState extends State<LocatorPage> {
                   _controller.complete(controller);
                 },
                 myLocationButtonEnabled: false,
+                onTap: (l) {
+                  setState((){
+                    _markers.add(makeMarkerTapped(l, rand.nextInt(10000), "There is something here"));
+                    //_goToTheLocationLT(l);
+                  });
+
+                },
               ),
               Padding(
                 padding: EdgeInsets.all(8),
@@ -237,6 +261,16 @@ class LocatorPageState extends State<LocatorPage> {
     CameraPosition _currPos = CameraPosition(
         bearing: 192.8334901395799,
         target: posLat,
+        tilt: 59.440717697143555,
+        zoom: 19.151926040649414);
+    controller.animateCamera(CameraUpdate.newCameraPosition(_currPos));
+  }
+
+  Future<void> _goToTheLocationLT(lt) async {
+    final GoogleMapController controller = await _controller.future;
+    CameraPosition _currPos = CameraPosition(
+        bearing: 192.8334901395799,
+        target: lt,
         tilt: 59.440717697143555,
         zoom: 19.151926040649414);
     controller.animateCamera(CameraUpdate.newCameraPosition(_currPos));

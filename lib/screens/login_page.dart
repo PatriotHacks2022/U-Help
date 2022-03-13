@@ -175,7 +175,7 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(height: 24.0),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.red.withOpacity(0.2),
+                        primary: Colors.blueAccent.withOpacity(0.2),
                         shadowColor: Colors.transparent,
                         // makes buttons round.
                         shape: RoundedRectangleBorder(
@@ -213,7 +213,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       child: const Text(
                         'Sign In',
-                        style: TextStyle(fontSize: 16, color: Colors.red),
+                        style: TextStyle(fontSize: 16, color: Colors.blue),
                       ),
                     ),
                     const SizedBox(height:16.0),

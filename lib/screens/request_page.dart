@@ -14,7 +14,7 @@ class RequestPage extends StatefulWidget {
 
 class _RequestPageState extends State<RequestPage> {
 
-  List<PersonData> people = PeopleData.people2;
+  List<PersonData> people = PeopleData.people;
 
   @override
   Widget build(BuildContext context) {

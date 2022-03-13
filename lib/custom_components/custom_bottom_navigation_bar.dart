@@ -25,44 +25,22 @@ class BottomNavigation extends StatelessWidget {
         items: [
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home,
+              Icons.people,
               color: isDarkMode ? Colors.white : Colors.black,
             ),
             activeIcon: const Icon(
-              Icons.home,
+              Icons.people,
               color: Colors.grey,
             ),
             label: "",
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.shopping_bag_rounded,
+              Icons.location_pin,
               color: isDarkMode ? Colors.white : Colors.black,
             ),
             activeIcon: const Icon(
-              Icons.shopping_bag_rounded,
-              color: Colors.grey,
-            ),
-            label: "",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.add,
-              color: isDarkMode ? Colors.white : Colors.black,
-            ),
-            activeIcon: const Icon(
-              Icons.add,
-              color: Colors.grey,
-            ),
-            label: "",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.send,
-              color: isDarkMode ? Colors.white : Colors.black,
-            ),
-            activeIcon: const Icon(
-              Icons.send,
+              Icons.location_pin,
               color: Colors.grey,
             ),
             label: "",
@@ -78,6 +56,28 @@ class BottomNavigation extends StatelessWidget {
             ),
             label: "",
           ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.send,
+              color: isDarkMode ? Colors.white : Colors.black,
+            ),
+            activeIcon: const Icon(
+              Icons.send,
+              color: Colors.grey,
+            ),
+            label: "",
+          ),
+          /*BottomNavigationBarItem(
+            icon: Icon(
+              Icons.account_circle,
+              color: isDarkMode ? Colors.white : Colors.black,
+            ),
+            activeIcon: const Icon(
+              Icons.account_circle,
+              color: Colors.grey,
+            ),
+            label: "",
+          ),*/
         ],
         selectedItemColor: Colors.amber[800],
         onTap: (index) => onSelectTab(

@@ -215,7 +215,7 @@ class _CustomAcceptProfileCardState extends State<CustomAcceptProfileCard> {
                   Expanded(child: Container()),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.red.withOpacity(0.2),
+                      primary: Colors.blue.withOpacity(0.2),
                       shadowColor: Colors.transparent,
                       // makes buttons round.
                       shape: RoundedRectangleBorder(
@@ -227,13 +227,13 @@ class _CustomAcceptProfileCardState extends State<CustomAcceptProfileCard> {
                     onPressed: () {},
                     child: const Text(
                       'Message',
-                      style: TextStyle(fontSize: 16, color: Colors.red),
+                      style: TextStyle(fontSize: 16, color: Colors.blue),
                     ),
                   ),
                   const SizedBox(height: 16),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.red.withOpacity(0.2),
+                      primary: Colors.blue.withOpacity(0.2),
                       shadowColor: Colors.transparent,
                       // makes buttons round.
                       shape: RoundedRectangleBorder(
@@ -247,7 +247,7 @@ class _CustomAcceptProfileCardState extends State<CustomAcceptProfileCard> {
                     },
                     child: const Text(
                       'Accept Request',
-                      style: TextStyle(fontSize: 16, color: Colors.red),
+                      style: TextStyle(fontSize: 16, color: Colors.blue),
                     ),
                   ),
                 ],
