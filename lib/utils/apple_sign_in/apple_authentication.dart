@@ -1,11 +1,14 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:swipe_shop_flutter/screens/email_verification_page.dart';
+
+import '../../app.dart';
 
 class AppleAuthentication{
 
@@ -24,6 +27,25 @@ class AppleAuthentication{
     final bytes = utf8.encode(input);
     final digest = sha256.convert(bytes);
     return digest.toString();
+  }
+
+  static Future<void> addUser(String ?name, String ?uid) async{
+    // Create a CollectionReference called users that references the firestore collection
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+    try{
+      var doc = await users.doc(uid).get();
+      if(!doc.exists){
+        return users.doc(uid).set(
+            {
+              'fullname':name,
+            }
+        ).then((value) => print("User Added"))
+            .catchError((error) => print("Failed to add user: $error"));
+      }
+    }catch (e){
+      throw e;
+    }
   }
 
   static Future<User?> signInWithApple({required BuildContext context}) async {
@@ -72,11 +94,11 @@ class AppleAuthentication{
       }
 
       if(firebaseUser != null){
+        
+        await addUser(displayName, firebaseUser.uid);
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => EmailVerificationPage(
-              user: firebaseUser,
-            ),
+            builder: (context) => App()//
           ),
         );
       }
