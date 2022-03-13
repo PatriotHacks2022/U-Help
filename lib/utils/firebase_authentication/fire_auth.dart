@@ -14,6 +14,9 @@ class FireAuth {
             {
               'fullname':name,
               'requests':{},
+              'note': "",
+              'location': [0,0],
+              'imageUrl':"",
             }
         ).then((value) => print("User Added"))
             .catchError((error) => print("Failed to add user: $error"));

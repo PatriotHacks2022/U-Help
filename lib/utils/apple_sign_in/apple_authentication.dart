@@ -6,6 +6,7 @@ import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:swipe_shop_flutter/data_classes/person_data.dart';
 import 'package:swipe_shop_flutter/screens/email_verification_page.dart';
 
 import '../../app.dart';
@@ -40,6 +41,9 @@ class AppleAuthentication{
             {
               'fullname':name,
               'requests':{},
+              'note': "",
+              'location': [0,0],
+              'imageUrl':"",
             }
         ).then((value) => print("User Added"))
             .catchError((error) => print("Failed to add user: $error"));

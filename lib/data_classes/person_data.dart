@@ -6,6 +6,9 @@ class PersonData {
   String name = "";
   String uid = "";
   String location = "";
+  List l = [0,0];
+  List requests = [];
+  List accepted = [];
   PersonData({
     required this.id,
     required this.imageUrl,
@@ -16,5 +19,14 @@ class PersonData {
 
   String getProductTitle() {
     return title;
+  }
+
+  static PersonData fromJson(Map<String, dynamic> json){
+    return PersonData(id: "",
+        imageUrl: "",
+        uid: "",
+        name: "",
+        note: "",
+        location: "");
   }
 }
