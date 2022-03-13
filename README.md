@@ -1,17 +1,11 @@
-# swipe_shop_flutter
+# U-Help
 
-A new Flutter project.
+With the ongoing situation in Ukraine, several Ukrainians have had no choice but to flee their country as refugees. As a result, Ukrainian refugees have several hardships, including difficulty in connecting with loved ones and making sure they are safe, finding nearby support such as shelters, and sharing updated information about their current circumstances in order to help each other. Additionally, refugees may lose their phones and have trouble fully communicating without cross-platform software. We wanted to find a way to help solve these problems as much as we could. To start, we came up with a mobile app that helps Ukrainian refugees contact each other and check locations. We hope to eventually upgrade this as a cross-platform application.
 
-## Getting Started
+U-Help allows refugees to search for, message, and request and share locations with their loved ones. Refugees can also locate shelters and notify others with annotated location updates. Our app runs on both iOS and Android
 
-This project is a starting point for a Flutter application.
+https://youtu.be/hnmp58EsZ78
 
-A few resources to get you started if this is your first Flutter project:
+![alt text](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/869/342/datas/gallery.jpg)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# refuge
+# U-Help
