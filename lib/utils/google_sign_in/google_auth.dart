@@ -4,8 +4,30 @@ import 'package:flutter/material.dart';
 import 'package:swipe_shop_flutter/screens/email_verification_page.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Authentication {
+
+  static Future<void> addUser(String ?name, String ?uid) async{
+    // Create a CollectionReference called users that references the firestore collection
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+    try{
+      var doc = await users.doc(uid).get();
+      if(!doc.exists){
+        return users.doc(uid).set(
+            {
+              'fullname':name,
+              'requests':{},
+            }
+        ).then((value) => print("User Added"))
+            .catchError((error) => print("Failed to add user: $error"));
+      }
+    }catch (e){
+      throw e;
+    }
+  }
+
   static SnackBar customSnackBar({required String content}) {
     return SnackBar(
       backgroundColor: Colors.black,
@@ -22,6 +44,14 @@ class Authentication {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
 
     User? user = FirebaseAuth.instance.currentUser;
+
+    // Add user to firestore
+    if(user != null){
+      await addUser(
+          user.displayName, user.uid
+      );
+    }
+
 
     if (user != null) {
       Navigator.of(context).pushReplacement(
