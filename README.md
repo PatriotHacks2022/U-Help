@@ -6,6 +6,11 @@ U-Help allows refugees to search for, message, and request and share locations w
 
 https://youtu.be/hnmp58EsZ78
 
-![alt text](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/869/342/datas/gallery.jpg)
+![alt text](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/869/339/datas/original.png)
+![alt text](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/869/341/datas/original.png)
+![alt text](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/869/342/datas/original.png)
+![alt text](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/869/343/datas/original.png)
+![alt text](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/869/344/datas/original.png)
+![alt text](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/869/346/datas/original.png)
 
 # U-Help
